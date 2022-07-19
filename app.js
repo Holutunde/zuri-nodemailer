@@ -6,8 +6,30 @@ require("dotenv/config");
 
 const port = process.env.PORT || 5000
 
-app.get("/email", (req, res, next) => {
-  
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        type: "OAuth2",
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASSWORD,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN
+    }
+})
+app.get("/email", (req, res) => {
+    transporter.sendMail({
+        from: "node@node.com",
+        to: "holutunde99@gmail.com",
+        subject: "Zuri Node Mailer Project",
+        text: "Thank God for giving us the greatest gift of life"
+    }, (err, data) => {
+        if (err) {
+            console.log(err)
+            return res.json("Error in the mailing process, try again");
+        }
+        res.json("Email successfully sent, You are doing well")
+    })
 })
 
-app.listen(process.env.PORT || 4000, () => console.log(`listening on ${process.env.PORT}`));
+app.listen(process.env.PORT, () => console.log(`listening on ${port} ....`));
