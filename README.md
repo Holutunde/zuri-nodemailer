@@ -4,11 +4,13 @@
 
 
 -  ## The screenshot below 
-![Screen Shot 2022-07-20 at 11 27 04 AM](https://user-images.githubusercontent.com/58793383/179960643-a6cdd2f0-beed-4889-b2a7-f882a09fed91.png)
+
+![Screen Shot 2022-07-19 at 11 33 53 AM](https://user-images.githubusercontent.com/58793383/179961763-82e640b6-04ef-4675-b78c-50519d46351f.png)
 
 
 ## The route
 
+```
 app.get("/email", (req, res) => {
     transporter.sendMail({
         from: "holutunde99@gmail.com",
@@ -23,3 +25,4 @@ app.get("/email", (req, res) => {
         res.json("Email successfully sent, You are doing well")
     })
 })
+```
