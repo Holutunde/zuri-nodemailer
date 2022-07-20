@@ -1,8 +1,8 @@
-const express = require("express");
-const app = express();
-const nodemailer = require("nodemailer");
+var express = require('express')
+var app = express()
+const nodemailer = require('nodemailer')
 
-require("dotenv/config");
+require('dotenv/config');
 
 const port = process.env.PORT || 5000
 
@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
 })
 app.get("/email", (req, res) => {
     transporter.sendMail({
-        from: "node@node.com",
+        from: "holutunde99@gmail.com",
         to: "holutunde99@gmail.com",
         subject: "Zuri Node Mailer Project",
         text: "Thank God for giving us the greatest gift of life"
@@ -31,5 +31,7 @@ app.get("/email", (req, res) => {
         res.json("Email successfully sent, You are doing well")
     })
 })
+  app.listen(port, function () {
+    console.log(`Server has started on ${port}.....`)
+  })
 
-app.listen(process.env.PORT, () => console.log(`listening on ${port} ....`));
